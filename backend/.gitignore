@@ -1,2 +1,3 @@
 node_modules
 server1.js
+.env

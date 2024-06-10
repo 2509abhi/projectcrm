@@ -1,8 +1,5 @@
 const startConsumer = require("./startcosumers");
-require("dotenv").config({ path: './.env' });
-// console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
-// console.log("Google Client Secret:", process.env.GOOGLE_CLIENT_SECRET);
-
+require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
