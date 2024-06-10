@@ -1,8 +1,8 @@
+// src/components/LoginPage.js
 import React from "react";
 const Login = () => {
   const signInWithGoogle = () => {
     window.location.href = "https://projectcrm-dgrs.onrender.com/auth/google";
-    // window.location.href = 'http://localhost:5000/auth/google';
   };
 
   return (

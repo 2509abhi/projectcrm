@@ -1,3 +1,4 @@
+// src/components/DashboardPage.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -11,7 +12,6 @@ const Dashboard = () => {
       try {
         const response = await axios.get(
           "https://projectcrm-dgrs.onrender.com/api/current_user",
-          // "https://projectcrm-dgrs.onrender.com/api/current_user",
           { withCredentials: true }
         );
         setUser(response.data);
