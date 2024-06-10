@@ -7,7 +7,7 @@ const Campaigns = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/campaigns");
+        const response = await axios.get("https://projectcrm-dgrs.onrender.com/api/campaigns");
         setCampaigns(response.data);
       } catch (error) {
         console.error("Error fetching campaigns:", error);

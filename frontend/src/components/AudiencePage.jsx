@@ -41,7 +41,7 @@ const Audience = () => {
   const checkAudienceSize = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/check-audience",
+        "https://projectcrm-dgrs.onrender.com/api/check-audience",
         { rules }
       );
       setAudienceSize(response.data.audienceSize);
@@ -52,7 +52,7 @@ const Audience = () => {
 
   const saveAudience = async () => {
     try {
-      await axios.post("http://localhost:5000/api/save-audience", { rules });
+      await axios.post("https://projectcrm-dgrs.onrender.com/api/save-audience", { rules });
       window.location.href = "/dashboard";
     } catch (error) {
       console.error("Error saving audience:", error);

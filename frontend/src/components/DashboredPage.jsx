@@ -10,7 +10,8 @@ const Dashboard = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/current_user",
+          "https://projectcrm-dgrs.onrender.com/api/current_user",
+          // "https://projectcrm-dgrs.onrender.com/api/current_user",
           { withCredentials: true }
         );
         setUser(response.data);
@@ -21,7 +22,7 @@ const Dashboard = () => {
 
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/campaigns");
+        const response = await axios.get("https://projectcrm-dgrs.onrender.com/api/campaigns");
         setCampaigns(response.data);
       } catch (error) {
         console.error("Error fetching campaigns:", error);
@@ -35,7 +36,7 @@ const Dashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    window.location.href = "http://localhost:5000/api/logout";
+    window.location.href = "https://projectcrm-dgrs.onrender.com/api/logout";
   };
 
   return (

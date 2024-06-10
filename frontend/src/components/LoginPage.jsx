@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 const Login = () => {
   const signInWithGoogle = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = "https://projectcrm-dgrs.onrender.com/auth/google";
+    // window.location.href = 'http://localhost:5000/auth/google';
   };
 
   return (
-     <div>
+    <div>
       <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="/">AlwaysLearn</a>
+        <a className="navbar-brand" href="/">
+          AlwaysLearn
+        </a>
       </nav>
       <div className="login-container">
         <div className="login-card">
