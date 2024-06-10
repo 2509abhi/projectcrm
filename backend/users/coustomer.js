@@ -2,7 +2,7 @@ const amqp = require('amqplib/callback_api');
 const Customer = require('../MongoFiles/coustomer');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const BROKER_URL = 'amqp://localhost';
+const BROKER_URL = process.env.RABBITMQ;
 // const MONGODB_URL = 'mongodb://127.0.0.1:27017/crm';
 
 // mongoose.connect(MONGODB_URL);

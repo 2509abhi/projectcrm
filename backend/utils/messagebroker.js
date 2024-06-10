@@ -1,6 +1,7 @@
 const amqp = require('amqplib/callback_api');
-
-const BROKER_URL = 'amqp://localhost';
+require('dotenv').config();
+const BROKER_URL = process.env.RABBITMQ;
+// const BROKER_URL = 'amqp://localhost';
 
 const publishMessage = (queue, message) => {
     amqp.connect(BROKER_URL, (error, connection) => {
