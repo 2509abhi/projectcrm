@@ -46,13 +46,13 @@ const Dashboard = () => {
           Dashboard
         </a>
         <div className="d-flex">
-          <a className="nav-link text-white" href="/create-audience">
+          <button className="btn btn-outline-light" onClick={() => window.location.href = "/create-audience"}>
             Create Audience
-          </a>
-          <a className="nav-link text-white" href="/campaigns">
+          </button>
+          <button className="btn btn-outline-light ml-2" onClick={() => window.location.href = "/campaigns"}>
             Campaigns
-          </a>
-          <button className="btn btn-outline-light" onClick={handleLogout}>
+          </button>
+          <button className="btn btn-outline-light ml-2" onClick={handleLogout}>
             Sign Out
           </button>
         </div>

@@ -20,7 +20,7 @@ const Campaigns = () => {
     <div>
       <nav className="navbar navbar-dark bg-dark">
         <a className="navbar-brand" href="/dashboard">
-          AlwaysLearn
+          CustomerReach
         </a>
       </nav>
       <div className="container mt-5">

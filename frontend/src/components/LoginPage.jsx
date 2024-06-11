@@ -9,7 +9,7 @@ const Login = () => {
     <div>
       <nav className="navbar navbar-dark bg-dark">
         <a className="navbar-brand" href="/">
-          AlwaysLearn
+          CustomerReach
         </a>
       </nav>
       <div className="login-container">
