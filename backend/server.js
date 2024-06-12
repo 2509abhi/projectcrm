@@ -132,12 +132,12 @@ app.get("/api/logout", (req, res, next) => {
 app.use("/customers", customerRoutes);
 app.use("/orders", orderRoutes);
 
-// Define Campaign Schema and Model
 const CampaignSchema = new mongoose.Schema({
   audienceSize: Number,
   sent: { type: Number, default: 0 },
   failed: { type: Number, default: 0 },
   status: String,
+  createdAt: { type: Date, default: Date.now }, // Add this line
 });
 
 const Campaign = mongoose.model("Campaign", CampaignSchema);
@@ -281,10 +281,11 @@ app.get("/api/campaigns", async (req, res) => {
     const campaigns = await CommunicationLog.aggregate([
       {
         $group: {
-          _id: "$campaignId", // Group by campaignId
+          _id: "$campaignId",
           audienceSize: { $sum: 1 },
           sent: { $sum: { $cond: [{ $eq: ["$status", "SENT"] }, 1, 0] } },
           failed: { $sum: { $cond: [{ $eq: ["$status", "FAILED"] }, 1, 0] } },
+          createdAt: { $first: "$createdAt" }, // Add this line to get the createdAt field
         },
       },
       {
@@ -294,7 +295,11 @@ app.get("/api/campaigns", async (req, res) => {
           audienceSize: 1,
           sent: 1,
           failed: 1,
+          createdAt: 1,
         },
+      },
+      {
+        $sort: { createdAt: -1 } // Sort by createdAt in descending order
       },
     ]);
 
@@ -305,6 +310,7 @@ app.get("/api/campaigns", async (req, res) => {
     res.status(500).json({ error: "Error fetching campaigns" });
   }
 });
+
 
 app.post("/api/delivery-receipt", async (req, res) => {
   const { id, status } = req.body;
