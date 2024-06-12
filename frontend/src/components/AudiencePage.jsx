@@ -1,4 +1,3 @@
-// src/components/AudiencePage.js
 import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
@@ -60,14 +59,19 @@ const Audience = () => {
     }
   };
 
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(date).toLocaleDateString('en-IN', options);
+  };
+
   const renderValueInput = () => {
     if (field === "last_visit") {
       return (
         <DatePicker
           selected={value ? new Date(value) : null}
-          onChange={(date) => setValue(date.toISOString().split("T")[0])}
+          onChange={(date) => setValue(date)}
           className="form-control"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="dd/MM/yyyy"
         />
       );
     } else {
@@ -135,7 +139,7 @@ const Audience = () => {
               key={index}
               className="list-group-item d-flex justify-content-between align-items-center"
             >
-              {`${rule.field} ${rule.operator} ${rule.value}`}
+              {`${rule.field} ${rule.operator} ${field === 'last_visit' ? formatDate(rule.value) : rule.value}`}
               <button
                 className="btn btn-danger btn-sm"
                 onClick={() => removeRule(index)}

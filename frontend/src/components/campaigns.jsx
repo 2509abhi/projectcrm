@@ -16,6 +16,19 @@ const Campaigns = () => {
     fetchCampaigns();
   }, []);
 
+  const formatDate = (dateString) => {
+    const options = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString('en-IN', options);
+  };
+
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
@@ -28,11 +41,13 @@ const Campaigns = () => {
         {campaigns.length > 0 ? (
           <ul className="list-group">
             {campaigns.map((campaign, index) => (
-              <li key={index} className="list-group-item">
+              <li key={campaign._id} className="list-group-item">
                 <h5>Campaign {index + 1}</h5>
                 <p>Audience Size: {campaign.audienceSize}</p>
                 <p>Sent: {campaign.sent}</p>
                 <p>Failed: {campaign.failed}</p>
+                <p>Status: {campaign.status}</p>
+                <p>Created At: {formatDate(campaign.createdAt)}</p>
               </li>
             ))}
           </ul>

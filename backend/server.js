@@ -287,31 +287,7 @@ app.post("/api/save-audience", async (req, res) => {
 
 app.get("/api/campaigns", async (req, res) => {
   try {
-    const campaigns = await CommunicationLog.aggregate([
-      {
-        $group: {
-          _id: "$campaignId",
-          audienceSize: { $sum: 1 },
-          sent: { $sum: { $cond: [{ $eq: ["$status", "SENT"] }, 1, 0] } },
-          failed: { $sum: { $cond: [{ $eq: ["$status", "FAILED"] }, 1, 0] } },
-          createdAt: { $first: "$createdAt" }, // Add this line to get the createdAt field
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          campaignId: "$_id",
-          audienceSize: 1,
-          sent: 1,
-          failed: 1,
-          createdAt: 1,
-        },
-      },
-      {
-        $sort: { createdAt: -1 } // Sort by createdAt in descending order
-      },
-    ]);
-
+    const campaigns = await Campaign.find().sort({ createdAt: -1 });
     console.log("Campaigns:", campaigns);
     res.json(campaigns);
   } catch (error) {
@@ -319,6 +295,7 @@ app.get("/api/campaigns", async (req, res) => {
     res.status(500).json({ error: "Error fetching campaigns" });
   }
 });
+
 
 
 app.post("/api/delivery-receipt", async (req, res) => {
