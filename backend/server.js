@@ -242,6 +242,14 @@ app.post("/api/save-audience", async (req, res) => {
     const savedLogs = await CommunicationLog.insertMany(communicationLogs);
     console.log("Saved communication logs:", savedLogs);
 
+    // Create and save a Campaign document
+    const newCampaign = new Campaign({
+      audienceSize: audience.length,
+      status: "IN_PROGRESS",
+    });
+
+    await newCampaign.save();
+
     // Simulate sending messages in bulk and hitting Delivery Receipt API
     savedLogs.forEach((log) => {
       setTimeout(() => {
@@ -269,12 +277,13 @@ app.post("/api/save-audience", async (req, res) => {
       }, Math.random() * 1000); // Simulate network delay
     });
 
-    res.json({ status: "Audience saved and messages sent to queue" });
+    res.json({ status: "Audience saved and campaign created" });
   } catch (error) {
     console.error("Error saving audience:", error);
     res.status(500).json({ error: "Error saving audience" });
   }
 });
+
 
 app.get("/api/campaigns", async (req, res) => {
   try {
